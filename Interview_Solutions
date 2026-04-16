@@ -1,1 +1,33 @@
+#Code Comments:
+
+Found issues related to security.
+Line 20: return expected == sig uses normal string comparison for webhook signature validation.
+Lines 18 and 30: body.decode("utf-8") and json.loads() can raise exceptions. If request body is not valid
+UTF-8 or the payload is malformed JSON, handler will return a 500 error.
+Lines 41-47: The SQL queries are built with f-strings using untrusted input like email, role and the raw request body.
+It may introduce an SQL injection risk.
+Line 45: Comment says "Upsert user", but code only performs only plain INSERT.
+Lines 37-50: Database connection never explicitly closed. I would use try/finally pattern so connection is always closed.
+Line 42: Storing full raw payload may help with debugging but may store sensitive data.
+Line 10: Production code will fail if webhook secret is missing.
+Line 55: Deployment should use a production WSGI server.
+
+#Follow Up questions
+##Prompt 1
+"Tell me simply if there are bugs in this code: [pasted code]"
+What I was hoping for the AI to accomplish:
+I wanted a quick review to identify whether there were any obvious bugs or security issues.
+
+What it did:
+It pointed out SQL injection, code was not doing as upsert, wak signature comparison, missing error handling for JSON/UTF-8 decoding, etc.
+
+AI output:
+“Yes. There are a few real problems. The biggest one is SQL injection... There is also a logic bug: the comment says ‘Upsert user,’ but the code does not upsert.”
+
+Did I have to re-prompt it?
+No.
+
+Why I changed my approach:
+THe first output felt like a more general feedback. I needed something that sounded more like a professional code review for a company.
+
 
