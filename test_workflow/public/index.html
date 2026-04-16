@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Calculator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="grid-overlay" aria-hidden="true"></div>
+      <div class="ambient ambient-top" aria-hidden="true"></div>
+      <div class="ambient ambient-bottom" aria-hidden="true"></div>
+
+      <main class="calculator" aria-labelledby="calculator-title">
+        <section class="display-panel">
+          <div class="display-header">
+            <div>
+              <p class="eyebrow">Precision-safe arithmetic</p>
+              <h1 id="calculator-title">Calculator</h1>
+            </div>
+            <span class="status-pill" id="connection-status" data-state="default"
+              >Ready</span
+            >
+          </div>
+
+          <div class="readout-panel">
+            <p class="expression" id="expression" aria-live="polite">
+              Enter a value to begin
+            </p>
+            <output
+              class="display"
+              id="display"
+              aria-live="polite"
+              aria-atomic="true"
+              data-size="default"
+              >0</output
+            >
+          </div>
+
+          <div class="display-footer" aria-hidden="true">
+            <span class="display-chip">API-backed</span>
+            <span class="display-chip">Keyboard enabled</span>
+          </div>
+        </section>
+
+        <section class="controls-panel">
+          <div class="controls-header">
+            <p class="controls-title">Tap or type</p>
+            <p class="controls-copy">Use 0-9, operators, Enter, Backspace, and Esc.</p>
+          </div>
+
+          <section class="keypad" aria-label="Calculator keypad">
+            <button class="key key-utility" data-action="clear" type="button">AC</button>
+            <button class="key key-utility" data-action="backspace" type="button">DEL</button>
+            <button class="key key-utility" data-action="percent" type="button">%</button>
+            <button class="key key-operator" data-operator="divide" type="button">÷</button>
+
+            <button class="key" data-digit="7" type="button">7</button>
+            <button class="key" data-digit="8" type="button">8</button>
+            <button class="key" data-digit="9" type="button">9</button>
+            <button class="key key-operator" data-operator="multiply" type="button">×</button>
+
+            <button class="key" data-digit="4" type="button">4</button>
+            <button class="key" data-digit="5" type="button">5</button>
+            <button class="key" data-digit="6" type="button">6</button>
+            <button class="key key-operator" data-operator="subtract" type="button">−</button>
+
+            <button class="key" data-digit="1" type="button">1</button>
+            <button class="key" data-digit="2" type="button">2</button>
+            <button class="key" data-digit="3" type="button">3</button>
+            <button class="key key-operator" data-operator="add" type="button">+</button>
+
+            <button
+              class="key key-utility"
+              data-action="negate"
+              type="button"
+              aria-label="Toggle positive or negative"
+            >
+              ±
+            </button>
+            <button class="key" data-digit="0" type="button">0</button>
+            <button class="key" data-action="decimal" type="button">.</button>
+            <button class="key key-equals" data-action="equals" type="button">=</button>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
